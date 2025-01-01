@@ -1,0 +1,63 @@
+# Python bytecode
+*.pyc
+*.pyo
+__pycache__/
+
+# Django specific
+*.log
+*.pot
+*.pyc
+*.pyo
+db.sqlite3
+*.sqlite3
+
+# Environment variables
+.env
+
+# Virtual Environment
+myenv/
+ENV/
+env/
+.venv/
+.ENV/
+
+# Django static files
+/staticfiles/
+/media/
+
+# IDE-specific files
+.idea/
+.vscode/
+
+# macOS files
+.DS_Store
+
+# Coverage reports
+htmlcov/
+*.cover
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.coveragerc
+
+# Test/Debug files
+*.bak
+*.swp
+*.swo
+*.orig
+*.rej
+
+# MyPy cache
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Local settings
+local_settings.py
+
+# Deploy-related
+*.pid
+celerybeat-schedule
+*.manifest
+*.lock
