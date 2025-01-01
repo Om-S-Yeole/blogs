@@ -75,9 +75,9 @@ This is a **Blog Platform** built using Django and PostgreSQL. It allows users t
    DATABASES = {
        'default': {
            'ENGINE': 'django.db.backends.postgresql',
-           'NAME': 'blogdb',
+           'NAME': 'blog_website_db',
            'USER': 'bloguser',
-           'PASSWORD': 'password',
+           'PASSWORD': config('POSTGRE_USER_bloguser_PASSWORD'), Use the python-decouple module to fetch the password from .env file.
            'HOST': 'localhost',
            'PORT': '',
        }
