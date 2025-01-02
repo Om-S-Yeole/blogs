@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+
+{% block content%}
+        {% comment %} CTA Banner {% endcomment %}
+        {% include "blog/cta_banner.html" %}
+
+        {% comment %} home section {% endcomment %}
+        {% include "blog/home_section.html" %}
+    
+        {% comment %} Recent Posts section {% endcomment %}
+        {% include "blog/post_section.html" with section_id="recent" section_class="" section_title="Recent Posts"%}
+    
+        {% comment %} Featured Posts section {% endcomment %}
+        {% include "blog/post_section.html" with section_id="featured" section_class="bg-secondary text-white" section_title="Featured Posts"%}
+    
+        {% comment %} About me section {% endcomment %}
+        {% include "blog/about_me_section.html"%}
+{% endblock content%}
+
+{% block css_styles%}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'blog/css/typewriter_effect.css'%}">
+{% endblock css_styles%}
+
+{% block js_scripts%}
+        {% load static %}
+        <script src="{% static 'blog/js/typewriter_effect.js' %}"></script>
+{% endblock js_scripts%}

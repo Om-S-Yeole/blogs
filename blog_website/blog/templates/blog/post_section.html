@@ -1,0 +1,12 @@
+{% comment %} list of variables => section_id, section_class, section_title {% endcomment %}
+
+<section id="{{ section_id }}" class="py-5 {{ section_class }}">
+    <div class="container">
+        <h2 class="mb-4">{{ section_title }}</h2>
+        <div class="row g-4">
+            {% include 'blog/card.html' %}
+            {% include 'blog/card.html' %}
+            {% include 'blog/card.html' %}
+        </div>
+    </div>
+</section>

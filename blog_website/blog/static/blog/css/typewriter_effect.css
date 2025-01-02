@@ -1,0 +1,28 @@
+/* Styling for the Typewriter Text */
+.typewriter {
+    display: inline-block;
+    font-size: 2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  
+  /* Cursor Blinking Effect */
+  .cursor {
+    font-weight: bold;
+    font-size: 2rem;
+    animation: blink 0.7s steps(2, start) infinite;
+  }
+  
+  /* Keyframe for Cursor Blink */
+  @keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  }

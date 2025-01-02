@@ -61,3 +61,6 @@ local_settings.py
 celerybeat-schedule
 *.manifest
 *.lock
+
+# Personal Images
+blog_website/blog/static/blog/images/

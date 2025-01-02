@@ -1,0 +1,190 @@
+/* Base Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  
+  /* Dark Mode */
+  .dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  
+  .dark-mode .navbar {
+    background-color: #1f1f1f;
+  }
+  
+  .dark-mode .card {
+    background-color: #1f1f1f;
+    border: none;
+    color: #e0e0e0;
+  }
+  
+  .dark-mode .btn-primary {
+    background-color: #bb86fc;
+    border-color: #bb86fc;
+  }
+  
+  .dark-mode .btn-primary:hover {
+    background-color: #9c5ffc;
+  }
+  
+/* Light Mode */
+  .light-mode {
+    background-color: #f8f9fa;
+    color: #212529;
+  }
+  
+  .light-mode .navbar {
+    background-color: #ffffff;
+  }
+  
+  .light-mode .card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    color: #212529;
+  }
+  
+  .light-mode .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .light-mode .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+/* Card Hover Effect */
+  .hover-effect:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+/* Footer */
+  footer {
+    font-size: 0.9rem;
+  }
+
+/* Style for the theme toggle icon */
+.theme-icon {
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+  }
+
+.theme-icon:hover {
+    transform: scale(1.2);
+    color: #fdd835; /* A bright yellow for hover effect */
+  }
+
+/* Navbar Links Styling */
+.nav-link {
+    color: rgba(255, 255, 255, 0.7); /* Slightly dimmed white */
+    font-size: 1rem;
+    transition: color 0.3s, transform 0.3s, text-shadow 0.3s;
+    position: relative;
+  }
+  
+  .nav-link:hover {
+    color: #fdd835; /* Bright yellow on hover */
+    transform: scale(1.1); /* Slight scaling effect */
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px; /* Add a line below the text */
+    left: 0;
+    background-color: #fdd835; /* Match hover color */
+    transition: width 0.3s;
+  }
+  
+  .nav-link:hover::after {
+    width: 100%; /* Expand underline on hover */
+  }
+  
+  .nav-link.active {
+    color: #fdd835; /* Highlight active link */
+  }
+
+/* Increase Navbar Height */
+.navbar {
+    min-height: 70px; /* Adjust this value as needed */
+  }
+  
+.navbar-brand img {
+    height: 50px; /* Increase the logo height */
+    width: auto; /* Ensure the width scales proportionally */
+    margin-right: 10px; /* Add some spacing between the logo and the name */
+  }
+
+  /* Style the Name (Om Yeole) in Navbar */
+.navbar-brand span {
+    font-size: 1.5rem; /* Increase the font size */
+    font-weight: bold; /* Make it bold for better emphasis */
+  }
+  
+  .nav-link {
+    padding: 0.5rem 1rem; /* Add more padding to links for better spacing */
+    font-size: 1.1rem; /* Slightly increase font size for readability */
+  }
+
+  .cta-banner {
+    background-color: #007bff; /* Blue background */
+    color: white;
+  }
+  .cta-banner a {
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .social-links {
+    margin-top: 20px;
+  }
+  
+  .social-icon {
+    font-size: 2rem; /* Increase the size of the icons */
+    color: white; /* Ensures the icons are white */
+    margin: 0 10px; /* Adds some space between icons */
+    transition: color 0.3s ease-in-out; /* Smooth color change on hover */
+}
+  .social-icon:hover {
+    color: #fdd835; /* Yellow on hover */
+  }
+
+  #backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 2rem;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: none;
+  }
+  #backToTop:hover {
+    background-color: #0056b3;
+  }
+
+  .spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
