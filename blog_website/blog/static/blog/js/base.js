@@ -1,3 +1,9 @@
+// Hide the loading spinner once the page is fully loaded
+window.addEventListener('load', function() {
+  var spinner = document.getElementById('loadingSpinner');
+    spinner.style.display = 'none'; // Hide the spinner after the page loads
+});
+
 // Dark Mode Toggle with Theme Persistence
 const modeToggle = document.getElementById('modeToggle');
 const body = document.body;

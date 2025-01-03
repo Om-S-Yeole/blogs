@@ -1,0 +1,102 @@
+/* Light Mode Form Styles */
+.form-light {
+    background-color: #f8f9fa; /* Light background */
+    color: #212529; /* Dark text */
+    border: 1px solid #ddd; /* Light border */
+}
+
+.form-light input, 
+.form-light select, 
+.form-light textarea {
+    background-color: #fff; /* White input fields */
+    color: #212529; /* Dark text for input fields */
+    border: 1px solid #ccc; /* Light border */
+}
+
+.form-light input::placeholder {
+    color: #888; /* Grey placeholder text */
+}
+
+/* Dark Mode Form Styles */
+.form-dark {
+    background-color: #343a40; /* Dark background */
+    color: #f8f9fa; /* Light text */
+    border: 1px solid #444; /* Darker border */
+}
+
+.form-dark input, 
+.form-dark select, 
+.form-dark textarea {
+    background-color: #495057; /* Darker input fields */
+    color: #f8f9fa; /* Light text for input fields */
+    border: 1px solid #666; /* Darker border */
+}
+
+.form-dark input::placeholder {
+    color: #bbb; /* Light grey placeholder text */
+}
+
+/* Button Styling */
+button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker hover color */
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(0, 123, 255, 0.5);
+}
+
+
+
+
+
+/* Light Mode - Default Text Styling */
+.form-light .form-text,
+.form-light .text-muted,
+.form-light small {
+    color: #6c757d; /* Light gray for helper text */
+}
+
+.form-light legend,
+.form-light label {
+    color: #212529; /* Dark text for labels and legends */
+}
+
+/* Dark Mode - Text Styling */
+.form-dark .form-text,
+.form-dark .text-muted,
+.form-dark small {
+    color: #f8f9fa; /* Light gray for helper text in dark mode */
+}
+
+.form-dark legend,
+.form-dark label {
+    color: #ffffff; /* White text for labels and legends */
+}
+
+/* Ensure contrast for error messages */
+.form-dark .invalid-feedback,
+.form-dark .help-block {
+    color: #ff6b6b; /* Bright red for error messages */
+}
+
+.form-light .invalid-feedback,
+.form-light .help-block {
+    color: #dc3545; /* Default red for error messages */
+}
+
+/* Link Styling */
+.form-light a {
+    color: #007bff; /* Blue links for light mode */
+}
+
+.form-dark a {
+    color: #66bfff; /* Lighter blue links for dark mode */
+}
