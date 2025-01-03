@@ -1,0 +1,71 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+ {% load static %}
+ <main>
+    <section id="about-me" class="py-5 text-center">
+        <div class="container">
+            <img src="/static/blog/images/My Photo.jpg" alt="Om Yeole" class="profile-pic mb-4">
+            <h1 class="mb-4">Om Yeole</h1>
+            <hr>
+            <div class="about-me-content">
+            <!-- Who Am I -->
+            <div class="about-section mt-5">
+                <h2>Who Am I</h2>
+                <p>A 20 year old deep self reflector and a person who is totally responsible for my own life and wellbeing.</p>
+            </div>
+            <hr>
+            <!-- My Journey So Far -->
+            <div class="about-section mt-5">
+                <h2>My Journey So Far</h2>
+                <p>My deep roots are from Jalgaon city (in Maharashtra), I grown up there and I spent majority of my life there. My journey is like similar as of the normal middle-class boy in India. I have enjoyed my school days a lot and I was topper of my school. Then, afterwards, I cracked JEE and got admission in IIT Madras in Aerospace Engineering.</p>
+            </div>
+            <hr>
+            <!-- What Drives Me -->
+            <div class="about-section mt-5">
+                <h2>What Drives Me</h2>
+                <p>I like to understand other people more, there behaviours and why they do what they do.</p>
+            </div>
+            <hr>
+            <!-- What I Believe In -->
+            <div class="about-section mt-5">
+                <h2>What I Believe In</h2>
+                <p> I strongly believe in,
+                    <ul>
+                        <li>Honesty</li>
+                        <li>Kindness towards every being on earth</li>
+                        <li>There is No God</li>
+                        <li>We are responsible for our own wellbeing and happiness.</li>
+                    </ul>
+                </p>
+            </div>
+            <hr>
+            <!-- What I’m Exploring Right Now -->
+            <div class="about-section mt-5">
+                <h2>What I’m Exploring Right Now</h2>
+                <p>Currently, I am exploring about how to build my own startup which will resonate with my beliefs.</p>
+            </div>
+            <hr>
+            <!-- Fun Facts About Me -->
+            <div class="about-section mt-5">
+                <h2>Fun Facts About Me</h2>
+                <ul>
+                    <li>I never cheated in any exam.</li>
+                    <li>I don't like to take photographs, my mental image memory is strong enough to go in the past.</li>
+                    <li>I don't like guests in my house. (I guess, you also don't 😅)</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+</main>
+{% endblock content%}
+
+{% block css_styles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blog/css/about_me.css'%}">
+{% endblock css_styles%}
+
+{% block js_scripts %}
+    {% comment %} no scripts {% endcomment %}
+{% endblock js_scripts %}
