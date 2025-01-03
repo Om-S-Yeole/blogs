@@ -11,3 +11,9 @@ def about_me(request):
         'title': 'About Me',
     }
     return render(request, 'blog/about_me.html', context)
+
+def contact_us(request):
+    context = {
+        'title': 'Contact Us',
+    }
+    return render(request, 'blog/contact_us.html', context)

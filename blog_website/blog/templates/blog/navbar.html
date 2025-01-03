@@ -1,7 +1,7 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center" href="{% url 'blog-home' %}">
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'blog-home' %}" title="Om Yeole">
             <img loading="lazy" src="{% static 'blog/images/logo.png'%}" alt="Logo" width="30" height="30"
                 class="d-inline-block align-text-top me-2">
             <span>Om Yeole</span>
@@ -11,16 +11,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" href="{% url 'blog-home' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/#recent">Recent</a></li>
-                <li class="nav-item"><a class="nav-link" href="/#featured">Featured</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'about-me' %}">About Me</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{% url 'blog-home' %}" title="Home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#recent" title="Recent">Recent</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#featured" title="Featured">Featured</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about-me' %}" title="About Me">About Me</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'contact-us' %}" title="Contact Us">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" title="Login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" title="Register">Register</a></li>
             </ul>
             <!-- Theme Toggle Icon -->
-            <i id="modeToggle" class="fas fa-moon ms-3 theme-icon"></i>
+            <i id="modeToggle" class="fas fa-moon ms-3 theme-icon" title="Theme"></i>
         </div>
     </div>
 </nav>
