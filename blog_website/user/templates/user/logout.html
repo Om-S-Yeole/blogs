@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center shadow p-4 rounded" id="registration-form">
+            <h2 class="mb-4">You Have Been Successfully Logged Out</h2>
+            <p class="">Thank you for visiting! We hope to see you again soon.</p>
+            <div class="border-top pt-3 mt-3">
+                <small class="">
+                    Want to log in again? 
+                    <a href="{% url 'login' %}" class="ml-2 text-decoration-none text-primary">
+                        Log In
+                    </a>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block css_styles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'user/css/register.css'%}">
+{% endblock css_styles %}
+
+{% block js_scripts %}
+    {% load static %}
+    <script src="{% static 'user/js/register.js' %}"></script>
+{% endblock js_scripts %}

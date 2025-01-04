@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm
 from django.contrib import messages
+from django.contrib.auth.views import LoginView
 
 def register(request):
     form = None
@@ -18,3 +19,13 @@ def register(request):
         'title': 'Register',
     }
     return render(request, 'user/register.html', context)
+
+class CustomLoginView(LoginView):
+    template_name = "user/login.html"  # Specify the template name
+
+    def get_context_data(self, **kwargs):
+        # Call the parent method to get the default context
+        context = super().get_context_data(**kwargs)
+        # Add your custom context
+        context['title'] = "Login to Your Account"
+        return context

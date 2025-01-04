@@ -15,5 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 modeToggle.addEventListener('click', () =>{
-    window.location.reload();
+    if (window.location.pathname === '/logout/'){
+        window.location.assign('');
+    }
+    else{
+        window.location.reload();
+    }
 });
