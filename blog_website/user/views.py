@@ -2,15 +2,22 @@ from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 def register(request):
     form = None
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
+        form.is_valid()
+        if User.objects.filter(email=form.cleaned_data.get('email')).exists():
+            messages.warning(request, f"This email is already registered. Please use a different email.")
+            return redirect("register")
         if form.is_valid():
             user = form.save()
             messages.success(request, f"Your Account has been created. You are now able to Login")
-            return redirect("blog-home")
+            return redirect("login")
     else:
         form = UserRegistrationForm()
 
@@ -29,3 +36,13 @@ class CustomLoginView(LoginView):
         # Add your custom context
         context['title'] = "Login to Your Account"
         return context
+    
+
+@login_required
+def subscribe(request):
+    if request.method == "POST":
+        user = request.user
+        user.profile.subscription_preference = True
+        user.profile.save()
+        return JsonResponse({"message": "Subscription successful!"})
+    return JsonResponse({"error": "Invalid request method"}, status=400)
