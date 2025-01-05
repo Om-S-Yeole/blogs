@@ -18,6 +18,10 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'contact-us' %}" title="Contact Us">Contact Us</a></li>
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}" title="Profile">Profile</a></li>
+                    {% if user.is_superuser %}
+                        <li class="nav-item"><a class="nav-link" href="/admin/" title="Admin">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" title="New Post">New Post</a></li>
+                    {% endif %}
                     <form action="{% url 'logout' %}" method="POST">
                         {% csrf_token %}
                         <li class="nav-item"><button class="nav-link" type='submit' title="Logout">Logout</button></li>
