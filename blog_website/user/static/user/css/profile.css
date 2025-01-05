@@ -1,0 +1,91 @@
+/* General Profile Card Styling */
+.profile-card {
+    background-color: #ffffff; /* White background for the card */
+    color: #333333; /* Dark text color */
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-card:hover {
+    transform: scale(1.02);
+}
+
+/* Header Section */
+.profile-header {
+    background: #007bff; /* Primary blue */
+    padding: 20px;
+    text-align: center;
+    border-bottom: 3px solid #f8c82e; /* Accent yellow */
+}
+
+.profile-header h2 {
+    font-size: 2rem;
+    margin: 0;
+    color: #ffffff; /* White text */
+}
+
+/* Body Section */
+.profile-body {
+    padding: 20px;
+}
+
+.profile-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-details li {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #dddddd; /* Light gray divider */
+    padding-bottom: 10px;
+}
+
+.profile-details strong {
+    font-weight: 600;
+    color: #007bff; /* Primary blue for field names */
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 12px;
+    text-transform: uppercase;
+}
+
+.badge-subscribed {
+    background-color: #28a745; /* Success green */
+    color: #ffffff; /* White text */
+}
+
+.badge-not-subscribed {
+    background-color: #dc3545; /* Danger red */
+    color: #ffffff; /* White text */
+}
+
+/* Footer Section */
+.profile-footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 3px solid #dddddd; /* Light gray divider */
+}
+
+.edit-profile-btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #007bff; /* Primary blue */
+    color: #ffffff; /* White text */
+    text-decoration: none;
+    transition: background 0.3s ease-in-out;
+}
+
+.edit-profile-btn:hover {
+    background-color: #0056b3; /* Darker blue for hover */
+}

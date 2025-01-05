@@ -1,0 +1,42 @@
+/* Default Light Mode Styles */
+[data-theme="light"] .confirmation-card {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode Styles */
+[data-theme="dark"] .confirmation-card {
+    background-color: #333;
+    color: #f1f1f1;
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Button Styling */
+button.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+
+[data-theme="dark"] button.btn-danger {
+    background-color: #a71d2a;
+    border-color: #a71d2a;
+}
+
+button.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+}
+
+[data-theme="dark"] button.btn-secondary {
+    background-color: #444950;
+    border-color: #444950;
+}

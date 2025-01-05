@@ -26,7 +26,7 @@ document.getElementById("subscribeButton").addEventListener("click", function (e
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             `;
-             // Reload the page to reflect changes
+            // Reload the page to reflect changes
             // location.reload();
         })
         .catch((error) => {

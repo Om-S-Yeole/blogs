@@ -1,0 +1,47 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <h2>Your Profile</h2>
+                </div>
+                <div class="profile-body">
+                    <ul class="profile-details">
+                        <li><strong>Username:</strong> {{ user.username }}</li>
+                        <li><strong>First Name:</strong> {{ user.first_name }}</li>
+                        <li><strong>Last Name:</strong> {{ user.last_name }}</li>
+                        <li><strong>Email:</strong> {{ user.email }}</li>
+                        <li><strong>Age:</strong> {{ user.profile.age }}</li>
+                        <li>
+                            <strong>Weekly Newsletter Subscription:</strong>
+                            {% if user.profile.subscription_preference %}
+                                <span class="badge badge-subscribed">Subscribed</span>
+                            {% else %}
+                                <span class="badge badge-not-subscribed">Not Subscribed</span>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+                <div class="profile-footer container">
+                    <div class='row'>
+                        <div class='col'>
+                            <a href="{% url 'profile_update' %}" class="btn btn-primary edit-profile-btn">Edit Profile</a>
+                        </div>
+                        <div class='col'>
+                            <a href="{% url 'delete_account' %}" class="btn btn-danger">Delete Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block css_styles %}
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'user/css/profile.css' %}">
+{% endblock css_styles%}

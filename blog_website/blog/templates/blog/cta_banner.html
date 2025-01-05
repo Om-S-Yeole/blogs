@@ -5,7 +5,7 @@
         {% else %}
             <section class="cta-banner py-4 bg-primary text-white text-center">
                 <h3>Stay Updated!</h3>
-                <p>Subscribe to Om Yeole's Blog for Thoughts, Ideas, and Perspectives.</p>
+                <p>Subscribe to Weekly Email Newsletter for Thoughts, Ideas, and Perspectives.</p>
                 <!-- Placeholder for Bootstrap alert -->
                 <div id="subscriptionAlert" class="mt-3"></div>
                 <a id="subscribeButton" class="btn btn-light" data-url="{% url 'subscribe' %}">Subscribe Now</a>
@@ -14,7 +14,7 @@
     {% else %}
         <section class="cta-banner py-4 bg-primary text-white text-center">
             <h3>Stay Updated!</h3>
-            <p>Subscribe to Om Yeole's Blog for Thoughts, Ideas, and Perspectives.</p>
+            <p>Subscribe to Weekly Email Newsletter for Thoughts, Ideas, and Perspectives.</p>
             <a href="{% url 'login' %}" class="btn btn-light">Subscribe Now</a>
         </section>
     {% endif %}

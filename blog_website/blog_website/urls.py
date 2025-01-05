@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from user import views as user_views
 from django.contrib.auth import views as auth_views
+from user.views import Delete_account
 
 
 urlpatterns = [
@@ -29,6 +30,9 @@ urlpatterns = [
     path('login/', user_views.CustomLoginView.as_view(template_name="user/login.html"), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name="user/logout.html"), name='logout'),
     path('subscribe/', user_views.subscribe, name='subscribe'),
+    path('profile/', user_views.profile, name='profile'),
+    path('profile_update/', user_views.profile_update, name='profile_update'),
+    path('profile/delete_account/', Delete_account.as_view(), name='delete_account'),
 ]
 
 if settings.DEBUG:

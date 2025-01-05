@@ -31,3 +31,19 @@ class UserRegistrationForm(UserCreationForm):
                                 subscription_preference=self.cleaned_data.get('subscription_preference'),
                                 terms_and_privacy_policy_acceptance = self.cleaned_data.get('terms_and_privacy_policy_acceptance'))
         return user
+    
+class UserUpdateForm(forms.ModelForm):
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+class ProfileUpdateForm(forms.ModelForm):
+    age = forms.IntegerField(min_value=0, required=True)
+    subscription_preference = forms.BooleanField(required=False, label="Hey Om, I would also like to get your weekly insights through weekly emails.")
+
+    class Meta:
+        model = User
+        fields = ['age', 'subscription_preference']
