@@ -4,9 +4,15 @@
     <div class="container">
         <h2 class="mb-4">{{ section_title }}</h2>
         <div class="row g-4">
-            {% include 'blog/card.html' %}
-            {% include 'blog/card.html' %}
-            {% include 'blog/card.html' %}
+            {% if section_id == 'featured' %}
+                {% for post in featured_posts %}
+                    {% include 'blog/card.html'%}
+                {% endfor %}
+            {% else %}
+                {% for post in posts %}
+                    {% include 'blog/card.html'%}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 </section>

@@ -64,3 +64,4 @@ celerybeat-schedule
 
 # Personal Images
 blog_website/blog/static/blog/images/
+media/

@@ -1,0 +1,91 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- Post Content -->
+        <div class="col-md-8">
+            <div class="post-detail-card shadow-sm p-4 mb-4">
+                <h1 class="post-title">{{ post.title }}</h1>
+                <p class="">By <strong>{{ post.author }}</strong> | Created on {{ post.created_at|date:"F j, Y" }}</p>
+                <div class="post-categories">
+                    <strong>Categories:</strong>
+                    {% for category in categories %}
+                        <span class="badge badge-info">{{ category.name }}</span>
+                    {% endfor %}
+                </div>
+                <hr>
+                <div class="post-content">
+                    {{ post.content|safe }}
+                </div>
+                <hr>
+                <div class="post-meta">
+                    <div id="like-section">
+                        <button id="like-btn" class="btn btn-outline-primary">
+                            {% if has_liked %}
+                                <span id="like-text">Unlike</span>
+                            {% else %}
+                                <span id="like-text">Like</span>
+                            {% endif %}
+                        </button>
+                    </div>
+                    <span class="likes-count">
+                        <i class="fa fa-heart text-danger"></i> {{ total_likes }} Likes
+                    </span>
+                    <span class="">Last updated on {{ post.updated_at|date:"F j, Y" }}</span>
+                </div>
+            </div>
+            
+            <!-- Comments Section -->
+            <div id="comments-section">
+                <h4 class="mb-4">Write a Comment</h4>
+                <form method="POST" action="{% url 'add-comment' post.slug %}">
+                    {% csrf_token %}
+                    <textarea name="text" class="form-control mb-3" placeholder="Write your comment here..." required></textarea>
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                </form>
+                <h3 class="mt-4">Comments ({{ total_comments }})</h3>
+                <ul class="comments-list" id="comments-list">
+                    {% for comment in comments %}
+                        <li class="comment shadow-sm p-3 mb-3">
+                            <strong>{{ comment.user.username }}</strong>
+                            <small>{{ comment.created_at|date:"F j, Y" }}</small>
+                            <p>{{ comment.content }}</p>
+                        </li>
+                    {% empty %}
+                        <p>No comments yet. Be the first to comment!</p>
+                    {% endfor %}
+                </ul>
+                
+                {% if has_more_comments %}
+                    <button id="load-more-btn" class="btn btn-info mb-4">Load More</button>
+                {% endif %}
+                
+                <div id="loading-spinner" style="display: none;">Loading...</div>
+            </div>
+        </div>
+        
+        <!-- Sidebar (Optional) -->
+        <div class="col-md-4">
+            <div class="sidebar">
+                <!-- Add any additional widgets here -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block css_styles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blog/css/post_detail.css' %}">
+{% endblock css_styles %}
+
+{% block js_scripts %}
+    <script>
+        const csrfToken = "{{ csrf_token }}";
+        const postSlug = "{{ post.slug }}";
+        const loginUrl = "{% url 'login' %}?next={{ request.path }}";
+    </script>
+    <script src="{% static 'blog/js/fetch_comments.js' %}"></script>
+    <script src="{% static 'blog/js/likes.js' %}"></script>
+{% endblock js_scripts %}

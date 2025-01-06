@@ -14,6 +14,7 @@
                 <li class="nav-item"><a class="nav-link active" href="{% url 'blog-home' %}" title="Home">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/#recent" title="Recent">Recent</a></li>
                 <li class="nav-item"><a class="nav-link" href="/#featured" title="Featured">Featured</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'all_posts' %}" title="All Posts">All Posts</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about-me' %}" title="About Me">About Me</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'contact-us' %}" title="Contact Us">Contact Us</a></li>
                 {% if user.is_authenticated %}

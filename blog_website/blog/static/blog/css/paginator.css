@@ -1,0 +1,46 @@
+/* Paginator Container */
+.paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Default Button Styling */
+.paginator .btn {
+    font-size: 1rem;
+    padding: 8px 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Active Button (Current Page) */
+.paginator .btn-info {
+    background-color: rgb(0, 123, 255); /* Adjust to your theme */
+    color: white;
+    border-color: rgb(0, 123, 255);
+}
+
+/* Default Button Hover */
+.paginator .btn-outline-info:hover {
+    background-color: rgb(0, 123, 255);
+    color: white;
+}
+
+/* Dark Mode Styling */
+body.dark-mode .paginator .btn-outline-info {
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+}
+
+body.dark-mode .paginator .btn-outline-info:hover {
+    background-color: rgb(0, 123, 255);
+    color: white;
+}
+
+body.dark-mode .paginator .btn-info {
+    background-color: rgb(0, 123, 255);
+    color: white;
+}
