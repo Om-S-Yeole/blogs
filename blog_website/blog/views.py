@@ -7,8 +7,8 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from .models import Post, Like, Category
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.urls import reverse, reverse_lazy
 from django.conf import settings
 from django.db.models import Count
 from django.contrib import messages
@@ -226,3 +226,22 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
         messages.success(self.request, "Your Post has been successfully Deleted!")
 
         return super().form_valid(form)
+    
+class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Comment
+    success_url = reverse_lazy('blog-home')  # Redirect to blog homepage after deletion
+
+    def form_valid(self, form):
+        messages.success(self.request, "Comment deleted successfully.")
+        return super().form_valid(form)
+
+    def test_func(self):
+        # Only allow superusers to delete comments
+        return self.request.user.is_superuser
+
+    def handle_no_permission(self):
+        # Redirect non-superusers to the homepage or display an error message
+        if self.request.user.is_authenticated:
+            messages.error(self.request, "You do not have permission to delete this comment.")
+            return redirect('blog-home')
+        return super().handle_no_permission()
