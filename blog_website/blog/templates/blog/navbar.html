@@ -9,6 +9,10 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <form method="get" action="{% url 'all_posts' %}" class="d-flex ms-5" role="search">
+            <input class="form-control me-2" type="search" name="search" placeholder="Search posts..." aria-label="Search">
+            <button class="btn btn-outline-info" type="submit">Search</button>
+        </form>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link active" href="{% url 'blog-home' %}" title="Home">Home</a></li>

@@ -46,11 +46,12 @@ class PostListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         selected_categories = self.request.GET.getlist('categories')  # Get selected categories from query parameters
-        
+        search_query = self.request.GET.get('search', '')  # Get the search query from the query parameters
+
+        # Filter by categories (intersection logic)
         if selected_categories:
-            # Convert selected category IDs to integers
-            selected_category_ids = list(map(int, selected_categories))
-            
+            selected_category_ids = list(map(int, selected_categories))  # Convert selected category IDs to integers
+
             if len(selected_category_ids) == 1:
                 # If only one category is selected, show all posts in that category
                 queryset = queryset.filter(categories__id=selected_category_ids[0])
@@ -59,6 +60,14 @@ class PostListView(ListView):
                 for category_id in selected_category_ids:
                     queryset = queryset.filter(categories__id=category_id)
 
+        # Filter by search query
+        if search_query:
+            queryset = queryset.filter(
+                Q(title__icontains=search_query) |  # Title contains search query (case insensitive)
+                Q(content__icontains=search_query) |  # Content contains search query (case insensitive)
+                Q(categories__name__icontains=search_query)  # Category name contains search query
+            ).distinct()  # Use distinct to prevent duplicate results if a post matches multiple categories
+
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -66,7 +75,9 @@ class PostListView(ListView):
         context['title'] = 'All Posts'
         context['categories'] = Category.objects.all()  # Pass all categories to the template
         context['selected_categories'] = list(map(int, self.request.GET.getlist('categories')))  # Get selected categories
+        context['search_query'] = self.request.GET.get('search', '')  # Pass the search query to the template
         return context
+
         
 class PostDetailView(DetailView):
     model = Post

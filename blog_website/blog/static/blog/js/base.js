@@ -75,3 +75,8 @@ document.getElementById('backToTop').addEventListener('click', () => {
 window.addEventListener('load', () => {
   document.getElementById('loadingSpinner').style.display = 'none';
 });
+
+document.getElementById('clear-search').addEventListener('click', function () {
+  const searchField = document.querySelector('input[name="search"]');
+  if (searchField) searchField.value = '';
+});
