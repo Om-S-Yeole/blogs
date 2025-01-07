@@ -1,16 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Comment
 from django.http import JsonResponse, HttpResponseNotAllowed
 from django.core.paginator import Paginator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-from .models import Post, Like
+from .models import Post, Like, Category
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.conf import settings
 from django.db.models import Count
+from django.contrib import messages
+from django.core.files.storage import default_storage  # To delete old image file
 
 def home(request):
     recent_posts = Post.objects.all().order_by('-created_at')[:3]
@@ -156,3 +158,71 @@ class AddCommentView(View):
     def get(self, request, slug):
         # Return a 405 Method Not Allowed response for GET requests
         return HttpResponseNotAllowed(["POST"])
+    
+class CategoryCreateView(LoginRequiredMixin, CreateView):
+    model= Category
+    fields = ['name']
+
+    def form_valid(self, form):
+        messages.success(self.request, "Your New Category has been successfully created!")
+        return super().form_valid(form)
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model= Post
+    fields = ['title', 'slug', 'content', 'image', 'short_description', 'categories']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        messages.success(self.request, "Your post has been successfully created!")
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        # Get the default context from the superclass
+        context = super().get_context_data(**kwargs)
+        context['post_action'] = "Create New Post"
+        context['post_method'] = "Post"
+
+        return context
+    
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    model = Post
+    fields = ['title', 'slug', 'content', 'image', 'short_description', 'categories']
+
+    def form_valid(self, form):
+        post = self.get_object()  # Get the post being updated
+        new_image = form.cleaned_data.get('image')  # Get the new image from the form
+
+        # Check if the image is updated
+        if new_image and post.image and post.image.name != new_image.name:
+            # Delete the old image if it's not the default image
+            if post.image.name != 'post_images/logo.png':  # Check to ensure not deleting the default image
+                default_storage.delete(post.image.path)  # Delete old image from storage
+
+        form.instance.author = self.request.user  # Set the author of the post
+        messages.success(self.request, "Your Post has been successfully updated!")
+
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        # Get the default context from the superclass
+        context = super().get_context_data(**kwargs)
+        context['post_action'] = "Update Post"
+        context['post_method'] = "Update"
+
+        return context
+    
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    model = Post
+    success_url = "/"
+
+    def form_valid(self, form):
+        post = self.get_object()  # Get the post being deleted
+
+        # Check if the image is updated
+        if post.image:
+            # Delete the old image if it's not the default image
+            if post.image.name != 'post_images/logo.png':  # Check to ensure not deleting the default image
+                default_storage.delete(post.image.path)  # Delete old image from storage
+
+        messages.success(self.request, "Your Post has been successfully Deleted!")
+
+        return super().form_valid(form)

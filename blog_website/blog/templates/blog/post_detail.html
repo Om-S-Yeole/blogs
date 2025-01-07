@@ -34,6 +34,16 @@
                     </span>
                     <span class="">Last updated on {{ post.updated_at|date:"F j, Y" }}</span>
                 </div>
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <div class="post-actions mb-5 mt-3">
+                            <div class="position-relative">
+                                <a class="btn btn-primary position-absolute top-50 start-0" href="{% url 'update-post' post.slug%}">Update Post</a>
+                                <a class="btn btn-danger position-absolute top-50 end-0" href="{% url 'delete-post' post.slug%}">Delete Post</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
             </div>
             
             <!-- Comments Section -->
@@ -62,13 +72,6 @@
                 {% endif %}
                 
                 <div id="loading-spinner" style="display: none;">Loading...</div>
-            </div>
-        </div>
-        
-        <!-- Sidebar (Optional) -->
-        <div class="col-md-4">
-            <div class="sidebar">
-                <!-- Add any additional widgets here -->
             </div>
         </div>
     </div>

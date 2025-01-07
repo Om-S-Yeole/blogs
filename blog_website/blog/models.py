@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 class Category(models.Model):
     """Model for blog categories."""
@@ -15,6 +16,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('blog-home')
 
 
 class Post(models.Model):
@@ -37,6 +41,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('post-detail', kwargs={'slug': self.slug})
     
     @property
     def likes(self):

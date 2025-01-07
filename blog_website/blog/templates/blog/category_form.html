@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container mt-5 mb-3">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!-- Add the 'form-light' or 'form-dark' class dynamically via body classes -->
+                <form method="POST" id="registration-form" enctype="multipart/form-data" class="shadow p-4 rounded">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Create New Category</legend>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit" title="Post">Create New Category</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block css_styles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'user/css/register.css'%}">
+{% endblock css_styles %}
+
+{% block js_scripts %}
+    {% load static %}
+    <script src="{% static 'user/js/register.js' %}"></script>
+{% endblock js_scripts %}

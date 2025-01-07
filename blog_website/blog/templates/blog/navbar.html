@@ -21,7 +21,8 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}" title="Profile">Profile</a></li>
                     {% if user.is_superuser %}
                         <li class="nav-item"><a class="nav-link" href="/admin/" title="Admin">Admin</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" title="New Post">New Post</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'new-post' %}" title="New Post">New Post</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'new-category' %}" title="New Post">New Category</a></li>
                     {% endif %}
                     <form action="{% url 'logout' %}" method="POST">
                         {% csrf_token %}
