@@ -1,0 +1,44 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <h1 class="text-center mb-4">Terms and Conditions</h1>
+    <div class="terms-container">
+        <p>Welcome to our blog website. By registering an account and using this website, you agree to the following terms and conditions:</p>
+        
+        <ol class="terms-list">
+            <li>
+                <strong>Account Registration:</strong> Users must provide accurate and complete information when creating an account. Any false information may result in the termination of your account.
+            </li>
+            <li>
+                <strong>Content Ownership:</strong> All blog posts and content on this website are authored by the website owner unless stated otherwise. Users are not allowed to create or upload their own posts.
+            </li>
+            <li>
+                <strong>Comments and Likes:</strong> Registered users can like and comment on blog posts. All comments should be respectful and adhere to community guidelines. Any offensive or inappropriate comments may be removed, and the user's account may be suspended or terminated.
+            </li>
+            <li>
+                <strong>Email Newsletter Subscription:</strong> Users can submit their email to subscribe to the weekly newsletter. We ensure secure handling of your email address in compliance with our <a href="{% url 'privacy-policy' %}">Privacy Policy</a>.
+            </li>
+            <li>
+                <strong>Prohibited Activities:</strong> Users are prohibited from:
+                <ul>
+                    <li>Misusing the website features or attempting to hack or exploit vulnerabilities.</li>
+                    <li>Uploading harmful or malicious content.</li>
+                    <li>Using automated tools to spam likes or comments.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Intellectual Property:</strong> The content, layout, design, and code of this website are the intellectual property of the website owner and are protected by copyright laws. Any unauthorized use of the content is strictly prohibited.
+            </li>
+            <li>
+                <strong>Termination:</strong> The website owner reserves the right to terminate any account at their discretion if any of the terms and conditions are violated.
+            </li>
+        </ol>
+    </div>
+</div>
+{% endblock content %}
+
+{% block css_styles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blog/css/terms_and_conditions.css'%}">
+{% endblock css_styles %}

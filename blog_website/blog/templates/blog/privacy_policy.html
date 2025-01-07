@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <h1 class="text-center mb-4">Privacy Policy</h1>
+    <div class="policy-container">
+        <p>Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you use this website:</p>
+        
+        <ol class="policy-list">
+            <li>
+                <strong>Account Information:</strong> When registering an account, we collect your username, email address, and password. Your password is encrypted and stored securely.
+            </li>
+            <li>
+                <strong>Email Newsletter:</strong> If you subscribe to our weekly email newsletter, we collect your email address to send you the latest updates and blog posts. You may opt-out at any time by clicking the "Unsubscribe" link in the newsletter email.
+            </li>
+            <li>
+                <strong>Comments and Likes:</strong> Any comments you post on the blog are publicly visible along with your username. Likes are counted but not publicly attributed to a specific user.
+            </li>
+            <li>
+                <strong>Cookies:</strong> This website uses cookies to improve user experience, track website analytics, and remember user preferences. You can manage cookie preferences in your browser settings.
+            </li>
+            <li>
+                <strong>Third-Party Services:</strong> We do not share your personal information with third-party services unless required by law or for essential functionality (e.g., email newsletter management services).
+            </li>
+            <li>
+                <strong>Data Security:</strong> We implement appropriate security measures to protect your personal data from unauthorized access or misuse. However, no data transmission or storage system is 100% secure.
+            </li>
+            <li>
+                <strong>Changes to This Policy:</strong> We may update this Privacy Policy from time to time. Users will be notified of any significant changes.
+            </li>
+        </ol>
+    </div>
+</div>
+{% endblock content %}
+
+{% block css_styles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blog/css/privacy_policy.css'%}">
+{% endblock css_styles %}

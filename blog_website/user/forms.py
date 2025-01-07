@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .models import Profile
 from django.contrib.auth.models import User
+from django.utils.safestring import mark_safe
 
 class UserRegistrationForm(UserCreationForm):
     first_name = forms.CharField(required=True)
@@ -9,8 +10,7 @@ class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
     age = forms.IntegerField(min_value=0, required=False)
     subscription_preference = forms.BooleanField(required=False, label="Hey Om, I would also like to get your weekly insights through weekly emails.")
-    terms_and_privacy_policy_acceptance = forms.BooleanField(required=True, label="By registering for new account, I accept the Terms and Conditions and Privacy Policies.")
-
+    terms_and_privacy_policy_acceptance = forms.BooleanField(required=True, label="By registering for a new account, I accept the Terms and Conditions and Privacy Policy.")
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'age', 'password1', 'password2', 'subscription_preference', 'terms_and_privacy_policy_acceptance']
