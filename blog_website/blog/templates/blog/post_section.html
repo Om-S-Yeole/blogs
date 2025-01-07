@@ -9,9 +9,13 @@
                     {% include 'blog/card.html'%}
                 {% endfor %}
             {% else %}
-                {% for post in posts %}
-                    {% include 'blog/card.html'%}
-                {% endfor %}
+                {% if posts %}
+                    {% for post in posts %}
+                        {% include 'blog/card.html'%}
+                    {% endfor %}
+                {% else %}
+                    <p class="">No posts found for the selected categories. Try changing the filters.</p>
+                {% endif %}
             {% endif %}
         </div>
     </div>

@@ -10,7 +10,7 @@ from .models import Post, Like, Category
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.contrib import messages
 from django.core.files.storage import default_storage  # To delete old image file
 
@@ -43,14 +43,31 @@ class PostListView(ListView):
     ordering = ['-created_at']
     paginate_by = 3
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        selected_categories = self.request.GET.getlist('categories')  # Get selected categories from query parameters
+        
+        if selected_categories:
+            # Convert selected category IDs to integers
+            selected_category_ids = list(map(int, selected_categories))
+            
+            if len(selected_category_ids) == 1:
+                # If only one category is selected, show all posts in that category
+                queryset = queryset.filter(categories__id=selected_category_ids[0])
+            else:
+                # If multiple categories are selected, apply intersection logic
+                for category_id in selected_category_ids:
+                    queryset = queryset.filter(categories__id=category_id)
+
+        return queryset
+
     def get_context_data(self, **kwargs):
-        # Get the default context from the superclass
         context = super().get_context_data(**kwargs)
-        
-        # Add the 'title' to the context
         context['title'] = 'All Posts'
-        
+        context['categories'] = Category.objects.all()  # Pass all categories to the template
+        context['selected_categories'] = list(map(int, self.request.GET.getlist('categories')))  # Get selected categories
         return context
+        
 class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'

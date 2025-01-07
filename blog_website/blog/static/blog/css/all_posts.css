@@ -1,0 +1,34 @@
+.dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.list-inline {
+    margin-top: 1rem;
+}
+
+.badge {
+    margin: 0 0.5rem;
+}
+
+/* Custom Styles for the Categories Filter Section */
+.dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+}
+.badge {
+    font-size: 0.9rem;
+    margin-right: 5px;
+}
+#category-filter-form {
+    flex-wrap: wrap;
+}
+#category-filter-form .dropdown {
+    max-width: 200px;
+}
