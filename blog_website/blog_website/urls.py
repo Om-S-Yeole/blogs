@@ -23,11 +23,11 @@ from blog import views as blog_views
 from django.contrib.auth import views as auth_views
 from user.views import Delete_account
 
-
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('', include('blog.urls')),
     path('register/', user_views.register, name='register'),
+    path('activate/<uidb64>/<token>/', user_views.activate_account, name='activate-account'),
     path('login/', user_views.CustomLoginView.as_view(template_name="user/login.html"), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name="user/logout.html"), name='logout'),
     path('subscribe/', user_views.subscribe, name='subscribe'),

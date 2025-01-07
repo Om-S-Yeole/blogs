@@ -7,19 +7,36 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DeleteView
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.encoding import force_str
+from .utils import account_activation_token
+from django.utils.encoding import force_bytes
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse
 
 def register(request):
     form = None
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
-        form.is_valid()
-        if User.objects.filter(email=form.cleaned_data.get('email')).exists():
-            messages.warning(request, f"This email is already registered. Please use a different email.")
-            return redirect("register")
         if form.is_valid():
-            user = form.save()
-            messages.success(request, f"Your Account has been created. You are now able to Login")
+            # Save the user and the profile together
+            user = form.save(commit=True)
+
+            # Send activation email
+            send_activation_email(user, request)
+
+            messages.success(
+                request,
+                f"Your account has been created! Please check your email to verify your account before logging in."
+            )
             return redirect("login")
+        else:
+            # Handle invalid form submission
+            messages.warning(request, f"Please correct the errors in the form.")
+            return redirect("register")
     else:
         form = UserRegistrationForm()
 
@@ -28,6 +45,49 @@ def register(request):
         'title': 'Register',
     }
     return render(request, 'user/register.html', context)
+
+
+def send_activation_email(user, request):
+    subject = 'Verify Your Email Address'
+    # Generate UID and token
+    uid = urlsafe_base64_encode(force_bytes(user.pk))
+    token = account_activation_token.make_token(user)
+
+    # Get the domain of the current site
+    domain = get_current_site(request).domain
+
+    # Generate the activation link
+    activation_link = reverse('activate-account', kwargs={'uidb64': uid, 'token': token})
+
+    # Construct the full URL for the email
+    activation_url = f"http://{domain}{activation_link}"
+
+    # Email message context
+    message = render_to_string('user/email_verification.html', {
+        'user': user,
+        'activation_link': activation_url,
+    })
+
+    # Send the email
+    send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [user.email])
+
+def activate_account(request, uidb64, token):
+    try:
+        # Decode the UID and get the user
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        # Activate the user's account
+        user.is_active = True
+        user.save()
+        messages.success(request, "Your email has been verified! You can now log in.")
+        return redirect("login")
+    else:
+        messages.error(request, "Invalid or expired activation link.")
+        return redirect("register")
 
 class CustomLoginView(LoginView):
     template_name = "user/login.html"  # Specify the template name
